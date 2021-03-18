@@ -6,23 +6,22 @@ use GuzzleHttp\Client;
 
 class PurwantaraPHP
 {
+    private const URL_DEVELOPMENT = 'https://api.ppndev.xyz/v1/';
+    private const URL_PRODUCTTION = 'https://api.purwantara.id/v1/';
+
     public function getChannel()
     {
         try {
             $client     = new Client();
-            $request    = $client->request('POST','https://api.purwantara.id/v1/get-channel', [
+            $request    = $client->request('GET', self::URL_PRODUCTTION.'channel', [
                 'headers' => [
-                    'Token' => config('purwantaraphp.purwantara_token'),
-                    'content-type' => 'application/json',
+                    'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
                 ],
             ]);
 
             return $request->getBody()->getContents();
         } catch (\Throwable $th) {
-            return response()->json([
-                'code' => 500,
-                'message' => $th->getMessage(),
-            ]);
+            return dd($th->getMessage());
         }
     }
 
@@ -30,7 +29,7 @@ class PurwantaraPHP
     {
         try {
             $client     = new Client();
-            $request    = $client->request('POST', 'https://api.purwantara.id/v1/virtual-account', [
+            $request    = $client->request('POST', self::URL_PRODUCTTION.'virtual-account', [
                 'headers' => [
                     'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
                 ],
@@ -47,7 +46,7 @@ class PurwantaraPHP
 
             return $request->getBody()->getContents();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            return dd($th->getMessage());
         }
     }
 }
