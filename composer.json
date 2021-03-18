@@ -1,7 +1,7 @@
 {
     "name": "ezha/purwantaraphp",
     "description": "Package Laravel For Integration To Purwantaraß",
-    "license": "license",
+    "license": "MIT",
     "authors": [
         {
             "name": "Muh Ezha Syafaat",
