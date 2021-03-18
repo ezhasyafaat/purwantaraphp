@@ -51,7 +51,7 @@ Get Channel From Purwantara
 use Carbon\Carbon;
 use Ezha\PurwantaraPHP\PurwantaraPHP;
 
-class PurwantaraController extends BaseController
+class PurwantaraController extends Controller
 {
     public function Channel()
     {
@@ -69,7 +69,7 @@ Create Virtual Account
 use Carbon\Carbon;
 use Ezha\PurwantaraPHP\PurwantaraPHP;
 
-class PurwantaraController extends BaseController
+class PurwantaraController extends Controller
 {
     public function VirtualAccount()
     {
@@ -115,12 +115,12 @@ license. Please see the [license file](license.md) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/ezha/purwantaraphp.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/ezha/purwantaraphp.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/ezha/purwantaraphp/master.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/ezhasyafaat/purwantaraphp/master.svg?style=flat-square
 [ico-styleci]: https://github.styleci.io/repos/349119905/shield
 
 [link-packagist]: https://packagist.org/packages/ezha/purwantaraphp
 [link-downloads]: https://packagist.org/packages/ezha/purwantaraphp
-[link-travis]: https://travis-ci.org/ezha/purwantaraphp
+[link-travis]: https://travis-ci.org/github/ezhasyafaat/purwantaraphp
 [link-styleci]: https://github.styleci.io/repos/349119905
 [link-author]: https://ezxxcode.com
 [link-contributors]: ../../contributors
