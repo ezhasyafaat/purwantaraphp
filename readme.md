@@ -37,7 +37,7 @@ If you discover any security related issues, please email author email instead o
 
 ## Credits
 
-- [Muh Ezha Syafaat][https://ezxxcode.com]
+- [Muh Ezha Syafaat](https://ezxxcode.com)
 - [All Contributors][link-contributors]
 
 ## License
