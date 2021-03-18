@@ -3,9 +3,26 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+<!-- [![StyleCI][ico-styleci]][link-styleci] -->
 
 This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+
+## Documentation
+```bash
+Payment Code
+    - CIMB = 6 DIGIT
+    - MANDIRI = X DIGIT
+    - MUAMALAT = X DIGIT
+    - PERMATA = X DIGIT
+    - BNI = X DIGIT
+
+Bank
+    - CIMB
+    - MANDIRI
+    - MUAMALAT
+    - PERMATA
+    - BNI
+```
 
 ## Installation
 
@@ -15,17 +32,69 @@ Via Composer
 $ composer require ezha/purwantaraphp
 ```
 
+Publish in config folder
+```php
+$ php artisan vendor:publish --tag="Ezha\PurwantaraPHP\PurwantaraPHPServiceProvider"
+```
+
+
 ## Usage
+Open .env file and put
+```bash
+PURWANTARA_TOKEN=YOUR_TOKEN_FROM_PURWANTARA
+```
+
+Get Channel From Purwantara
+```php
+<?php
+
+use Carbon\Carbon;
+use Ezha\PurwantaraPHP\PurwantaraPHP;
+
+class PurwantaraController extends BaseController
+{
+    public function Channel()
+    {
+        $purwantara    = new PurwantaraPHP();
+        
+        return $purwantara->getChannel();
+    }
+}
+```
+
+Create Virtual Account
+```php
+<?php
+
+use Carbon\Carbon;
+use Ezha\PurwantaraPHP\PurwantaraPHP;
+
+class PurwantaraController extends BaseController
+{
+    public function VirtualAccount()
+    {
+        $params = [
+            'amount'        => 10000,
+            'name'          => 'Ezha Syafaat',
+            'channel'       => 'CIMB', //required, see list bank code in Documentation
+            'desc'          => 'Description',
+            'expired_at'    => Carbon::now()->addDays(2)->toIso8601String(), //Expired time with format Iso8601
+            'unique_id'     => 'TESTING PACKAGE EZHA',
+            'payment_code'  => null, //optional, see format payemnt code in Documentation
+        ];
+
+        $purwantara    = new PurwantaraPHP();
+        
+        return $purwantara->getChannel($params);
+    }
+}
+```
+
 
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
 
-## Testing
-
-``` bash
-$ composer test
-```
 
 ## Contributing
 
@@ -37,7 +106,7 @@ If you discover any security related issues, please email author email instead o
 
 ## Credits
 
-- [Muh Ezha Syafaat](https://ezxxcode.com)
+- [Muh Ezha Syafaat][link-author]
 - [All Contributors][link-contributors]
 
 ## License
@@ -53,5 +122,5 @@ license. Please see the [license file](license.md) for more information.
 [link-downloads]: https://packagist.org/packages/ezha/purwantaraphp
 [link-travis]: https://travis-ci.org/ezha/purwantaraphp
 [link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/ezha
+[link-author]: https://ezxxcode.com
 [link-contributors]: ../../contributors
