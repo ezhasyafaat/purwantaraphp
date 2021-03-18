@@ -12,8 +12,8 @@ class PurwantaraPHP
     public function getChannel()
     {
         try {
-            $client     = new Client();
-            $request    = $client->request('GET', self::URL_PRODUCTTION.'channel', [
+            $client = new Client();
+            $request = $client->request('GET', self::URL_PRODUCTTION.'channel', [
                 'headers' => [
                     'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
                 ],
@@ -28,8 +28,8 @@ class PurwantaraPHP
     public function getVirtualAccount($params = [])
     {
         try {
-            $client     = new Client();
-            $request    = $client->request('POST', self::URL_PRODUCTTION.'virtual-account', [
+            $client = new Client();
+            $request = $client->request('POST', self::URL_PRODUCTTION.'virtual-account', [
                 'headers' => [
                     'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
                 ],
