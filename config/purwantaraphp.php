@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'purwantara_token' => env('PURWANTARA_TOKEN'),
+    'purwantara_token' => env('PURWANTARA_TOKEN')
 ];
