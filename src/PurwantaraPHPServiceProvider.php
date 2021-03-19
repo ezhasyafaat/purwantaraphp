@@ -31,7 +31,7 @@ class PurwantaraPHPServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/purwantaraphp.php', 'purwantaraphp');
+        $this->mergeConfigFrom(__DIR__.'/../config/purwantara.php', 'purwantara');
 
         // Register the service the package provides.
         $this->app->singleton('purwantaraphp', function ($app) {

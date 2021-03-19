@@ -13,7 +13,7 @@ class PurwantaraPHP
     {
         try {
             $request = Http::withHeaders([
-                'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
+                'Authorization' => 'Bearer '.config('purwantara.purwantara_token'),
             ])->get(self::URL_PRODUCTTION.'channel');
 
             return $request->json();
@@ -26,7 +26,7 @@ class PurwantaraPHP
     {
         try {
             $request = Http::withHeaders([
-                'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
+                'Authorization' => 'Bearer '.config('purwantara.purwantara_token'),
             ])->post(self::URL_PRODUCTTION.'virtual-account', [
                 'expected_amount'       => $params['amount'],
                 'name'                  => $params['name'],
