@@ -2,7 +2,6 @@
 
 namespace Ezha\PurwantaraPHP;
 
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
 class PurwantaraPHP
@@ -23,19 +22,19 @@ class PurwantaraPHP
         }
     }
 
-    public function getVirtualAccount($params = [])  
+    public function getVirtualAccount($params = [])
     {
         try {
             $request = Http::withHeaders([
                 'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
             ])->post(self::URL_PRODUCTTION.'virtual-account', [
-                    'expected_amount'       => $params['amount'],
-                    'name'                  => $params['name'],
-                    'bank'                  => $params['channel'],
-                    'description'           => $params['desc'],
-                    'expired_at'            => $params['expired_at'],
-                    'external_id'           => $params['unique_id'],
-                    'payment_code'          => isset($params['payment_code']) ? $params['payment_code'] : null,
+                'expected_amount'       => $params['amount'],
+                'name'                  => $params['name'],
+                'bank'                  => $params['channel'],
+                'description'           => $params['desc'],
+                'expired_at'            => $params['expired_at'],
+                'external_id'           => $params['unique_id'],
+                'payment_code'          => isset($params['payment_code']) ? $params['payment_code'] : null,
             ]);
 
             return $request->json();
