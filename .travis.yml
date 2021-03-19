@@ -2,12 +2,31 @@ language: php
 
 sudo: false
 
-php:
-  - 7.3
-  - 7.4
-  
-script:
-  - phpunit
-
 notifications:
-  email:false
+    email:
+        on_success: never
+        on_failure: always
+
+matrix:
+  include:
+    - php: 7.3
+      env: LARAVEL='8.*' TESTBENCH='4.*' COMPOSER_FLAGS='--prefer-lowest'
+    - php: 7.3
+      env: LARAVEL='8.*' TESTBENCH='4.*' COMPOSER_FLAGS='--prefer-stable'
+    - php: 7.4snapshot
+      env: LARAVEL='8.*' TESTBENCH='4.*' COMPOSER_FLAGS='--prefer-lowest'
+    - php: 7.4snapshot
+      env: LARAVEL='8.*' TESTBENCH='4.*' COMPOSER_FLAGS='--prefer-stable'
+  fast_finish: true
+  allow_failures:
+    - php: 7.4snapshot
+
+install:
+  - travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction --no-suggest
+  - travis_retry composer require --dev satooshi/php-coveralls
+
+script:
+  - composer run phpunit -- --coverage-clover ./tests/logs/clover.xml
+
+after_script:
+  - php vendor/bin/php-coveralls -v
