@@ -46,7 +46,7 @@ class PurwantaraPHPServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['purwantaraphp'];
+        return ['purwantara'];
     }
 
     /**
@@ -58,8 +58,8 @@ class PurwantaraPHPServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/purwantaraphp.php' => config_path('purwantaraphp.php'),
-        ], 'purwantaraphp.config');
+            __DIR__.'/../config/purwantara.php' => config_path('purwantara.php'),
+        ], 'purwantara.config');
 
         // Publishing the views.
         /*$this->publishes([
