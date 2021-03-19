@@ -85,7 +85,7 @@ class PurwantaraController extends Controller
 
         $purwantara    = new PurwantaraPHP();
         
-        return $purwantara->getChannel($params);
+        return $purwantara->getVirtualAccount($params);
     }
 }
 ```
