@@ -33,8 +33,8 @@ $ composer require ezha/purwantaraphp
 ```
 
 Publish in config folder
-```php
-$ php artisan vendor:publish --tag="Ezha\PurwantaraPHP\PurwantaraPHPServiceProvider"
+```bash
+$ php artisan vendor:publish --provider="Ezha\PurwantaraPHP\PurwantaraPHPServiceProvider"
 ```
 
 
