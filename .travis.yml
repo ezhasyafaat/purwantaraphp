@@ -5,10 +5,7 @@ sudo: false
 php:
   - 7.3
   - 7.4
-
-before_script:
-  - php artisan vendor:publish
-
+  
 script:
   - phpunit
 
