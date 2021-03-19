@@ -3,6 +3,7 @@
 namespace Ezha\PurwantaraPHP;
 
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class PurwantaraPHP
 {
@@ -12,39 +13,32 @@ class PurwantaraPHP
     public function getChannel()
     {
         try {
-            $client = new Client();
-            $request = $client->request('GET', self::URL_PRODUCTTION.'channel', [
-                'headers' => [
-                    'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
-                ],
-            ]);
+            $request = Http::withHeaders([
+                'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
+            ])->get(self::URL_PRODUCTTION.'channel');
 
-            return $request->getBody()->getContents();
+            return $request->json();
         } catch (\Throwable $th) {
             return dd($th->getMessage());
         }
     }
 
-    public function getVirtualAccount($params = [])
+    public function getVirtualAccount($params = [])  
     {
         try {
-            $client = new Client();
-            $request = $client->request('POST', self::URL_PRODUCTTION.'virtual-account', [
-                'headers' => [
-                    'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
-                ],
-                'form-params'    => [
+            $request = Http::withHeaders([
+                'Authorization' => 'Bearer '.config('purwantaraphp.purwantara_token'),
+            ])->post(self::URL_PRODUCTTION.'virtual-account', [
                     'expected_amount'       => $params['amount'],
                     'name'                  => $params['name'],
                     'bank'                  => $params['channel'],
                     'description'           => $params['desc'],
                     'expired_at'            => $params['expired_at'],
                     'external_id'           => $params['unique_id'],
-                    'payment_code'          => $params['payment_code'],
-                ],
+                    'payment_code'          => isset($params['payment_code']) ? $params['payment_code'] : null,
             ]);
 
-            return $request->getBody()->getContents();
+            return $request->json();
         } catch (\Throwable $th) {
             return dd($th->getMessage());
         }
